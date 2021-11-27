@@ -1,0 +1,21 @@
+<div>
+  <input #ref type="file" [accept]="type" (change)="onSelect()" hidden>
+  <div class="relative w-24 h-24 p-1 border border-solid border-gray-300 rounded cursor-pointer"
+       (click)="onClick()">
+    <ng-container *ngIf="resource">
+      <img *ngIf="resource | resource | async as res"
+           [src]="res.uri"
+           [alt]="res.name"
+           class="w-full h-full">
+      <div *ngIf="status === 'request'"
+           class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-25 rounded">
+        <mat-spinner [diameter]="40"></mat-spinner>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="!resource">
+      <div class="w-full h-full flex items-center justify-center">
+        <span>not selected</span>
+      </div>
+    </ng-container>
+  </div>
+</div>

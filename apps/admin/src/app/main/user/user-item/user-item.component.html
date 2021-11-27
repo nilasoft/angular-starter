@@ -1,0 +1,38 @@
+<div class="p-4">
+  <div *ngIf="item | async as _item" class="relative">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>User</mat-card-title>
+        <mat-card-subtitle>{{mode | async}}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <form id="user" [formGroup]="form" (ngSubmit)="onSubmit()">
+          <mat-form-field appearance="outline" class="w-full">
+            <mat-label>Username</mat-label>
+            <input matInput formControlName="username">
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="w-full">
+            <mat-label>Password</mat-label>
+            <input matInput formControlName="password">
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="w-full">
+            <mat-label>Role</mat-label>
+            <input matInput formControlName="role">
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="w-full">
+            <mat-label>Status</mat-label>
+            <input matInput formControlName="status">
+          </mat-form-field>
+        </form>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button form="user" color="primary">Submit</button>
+        <button mat-stroked-button routerLink="/users">Cancel</button>
+      </mat-card-actions>
+    </mat-card>
+    <div *ngIf="_item.status === 'request'"
+         class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-25 rounded">
+      <mat-spinner></mat-spinner>
+    </div>
+  </div>
+</div>

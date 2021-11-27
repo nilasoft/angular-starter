@@ -1,0 +1,37 @@
+<div class="p-8 flex items-center justify-center">
+  <div *ngIf="authorization | async as _authorization"
+       class="relative w-full sm:w-5/6 md:w-4/6 lg:w-3/6 xl:w-2/6">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Register</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <form id="register" [formGroup]="form" (ngSubmit)="onSubmit()">
+          <mat-form-field appearance="outline" class="w-full">
+            <mat-label>Username</mat-label>
+            <input matInput formControlName="username">
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="w-full">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" type="email">
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="w-full">
+            <mat-label>Password</mat-label>
+            <input matInput formControlName="password" type="password">
+          </mat-form-field>
+        </form>
+      </mat-card-content>
+      <mat-card-actions>
+        <div class="mx-2 flex items-center">
+          <button mat-raised-button form="register" color="primary">Submit</button>
+          <span class="flex-1"></span>
+          <a [routerLink]="config.route.login">Login</a>
+        </div>
+      </mat-card-actions>
+    </mat-card>
+    <div *ngIf="_authorization.status === 'request'"
+         class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-25 rounded">
+      <mat-spinner></mat-spinner>
+    </div>
+  </div>
+</div>

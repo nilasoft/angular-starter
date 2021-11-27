@@ -1,0 +1,29 @@
+<div class="w-screen h-screen flex flex-col">
+  <mat-toolbar color="primary" class="flex-none flex">
+    <button mat-icon-button (click)="sidenav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>{{'appName' | translate}}</span>
+    <span class="flex-1"></span>
+    <span *ngIf="user | async as _user" class="text-base">Hello, {{_user.data.username}}!</span>
+    <button mat-icon-button (click)="onLogout()">
+      <mat-icon>logout</mat-icon>
+    </button>
+  </mat-toolbar>
+  <mat-sidenav-container class="flex-1 overflow-hidden">
+    <mat-sidenav #sidenav mode="side" class="w-64" opened>
+      <mat-list>
+        <mat-list-item *ngFor="let item of list;"
+                       class="hover:bg-gray-200 cursor-pointer"
+                       [routerLink]="item.path"
+                       routerLinkActive="bg-gray-100 font-bold">
+          <mat-icon mat-list-icon color="accent">{{item.icon}}</mat-icon>
+          <div mat-line>{{item.title}}</div>
+        </mat-list-item>
+      </mat-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

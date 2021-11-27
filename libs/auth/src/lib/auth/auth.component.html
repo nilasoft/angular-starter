@@ -1,0 +1,8 @@
+<div class="w-screen h-screen flex flex-col">
+  <mat-toolbar color="primary" class="flex-none">
+    <span>{{config.role | ucwords}}</span>
+  </mat-toolbar>
+  <div class="flex-1 bg-gray-100 overflow-hidden">
+    <router-outlet></router-outlet>
+  </div>
+</div>

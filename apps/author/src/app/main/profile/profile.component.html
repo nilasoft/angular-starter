@@ -1,0 +1,29 @@
+<div class="p-4">
+  <div *ngIf="state | async as _state" class="relative">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Profile</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <form id="profile" [formGroup]="form" (ngSubmit)="onSubmit()">
+          <mat-form-field appearance="outline" class="w-full">
+            <mat-label>First Name</mat-label>
+            <input matInput formControlName="firstName">
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="w-full">
+            <mat-label>Last Name</mat-label>
+            <input matInput formControlName="lastName">
+          </mat-form-field>
+          <nilasoft-resource label="Avatar" formControlName="avatar"></nilasoft-resource>
+        </form>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button form="profile" color="primary">Submit</button>
+      </mat-card-actions>
+    </mat-card>
+    <div *ngIf="_state.status === 'request'"
+         class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-25 rounded">
+      <mat-spinner></mat-spinner>
+    </div>
+  </div>
+</div>

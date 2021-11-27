@@ -1,0 +1,3 @@
+{
+  "{apps,libs}/**/*.{js,ts}": "yarn lint --files"
+}
